@@ -1,0 +1,225 @@
+{
+  "project_name": "Pipeline Data End-to-End pour les Annonces Immobilières Avito.ma",
+  "project_type": "Data Engineering + Data Warehouse + BI + ML (Scraping + PostgreSQL/SQL Server + Power BI)",
+  "dataset": "Annonces immobilières Avito.ma",
+  "total_rows": null,
+  "total_columns": null,
+  "deadline": "01/05/2026",
+  "jira_mapping": {
+    "epic": "Epic",
+    "task": "Tâche",
+    "subtask": "Sous-tâche"
+  },
+  "epics": [
+    {
+      "epic": "Préparation de l’Environnement",
+      "tasks": [
+        {
+          "task_name": "Installation des outils nécessaires",
+          "subtasks": [
+            "Installer Python et les bibliothèques nécessaires (Selenium, Requests, BeautifulSoup, Pandas)",
+            "Installer Docker et Docker Compose",
+            "Configurer SQL Server ou PostgreSQL"
+          ]
+        },
+        {
+          "task_name": "Structuration du projet",
+          "subtasks": [
+            "Créer l’architecture du projet (extract, staging, clean, warehouse, logs)",
+            "Créer le fichier requirements.txt",
+            "Initialiser le repository GitHub"
+          ]
+        }
+      ]
+    },
+    {
+      "epic": "Extraction des Données (Scraping)",
+      "tasks": [
+        {
+          "task_name": "Scraping des annonces immobilières",
+          "subtasks": [
+            "Extraire le titre de l’annonce",
+            "Extraire le prix",
+            "Extraire la ville et le quartier",
+            "Extraire la surface (m²)",
+            "Extraire le nombre de chambres",
+            "Extraire le nombre de salles de bain",
+            "Extraire l’étage si disponible",
+            "Extraire l’année de construction si disponible",
+            "Extraire le lien de l’annonce"
+          ]
+        },
+        {
+          "task_name": "Gestion avancée du scraping",
+          "subtasks": [
+            "Mettre en place la pagination automatique",
+            "Gérer les erreurs de scraping",
+            "Créer les logs des requêtes",
+            "Détecter les anomalies de scraping"
+          ]
+        }
+      ]
+    },
+    {
+      "epic": "Conformité et Gouvernance des Données",
+      "tasks": [
+        {
+          "task_name": "Respect des règles RGPD",
+          "subtasks": [
+            "Exclure strictement les données personnelles (nom, téléphone, email)",
+            "Appliquer la minimisation des données collectées",
+            "Supprimer les données sensibles détectées",
+            "Documenter la finalité du traitement"
+          ]
+        },
+        {
+          "task_name": "Traçabilité des données",
+          "subtasks": [
+            "Créer un système de suivi des données collectées",
+            "Ajouter des logs de contrôle",
+            "Assurer la sécurité et la durée limitée de conservation"
+          ]
+        }
+      ]
+    },
+    {
+      "epic": "Stockage en Staging Layer",
+      "tasks": [
+        {
+          "task_name": "Chargement des données brutes",
+          "subtasks": [
+            "Créer la table staging des annonces",
+            "Insérer les données brutes scrapées",
+            "Mettre en place le contrôle qualité initial"
+          ]
+        }
+      ]
+    },
+    {
+      "epic": "Nettoyage des Données (Clean Layer)",
+      "tasks": [
+        {
+          "task_name": "Traitement de la qualité des données",
+          "subtasks": [
+            "Supprimer les doublons",
+            "Gérer les valeurs manquantes",
+            "Corriger les types de données",
+            "Standardiser les villes et quartiers",
+            "Détecter et traiter les valeurs aberrantes"
+          ]
+        }
+      ]
+    },
+    {
+      "epic": "Feature Engineering",
+      "tasks": [
+        {
+          "task_name": "Création des variables dérivées",
+          "subtasks": [
+            "Calculer le prix par m²",
+            "Calculer l’âge estimé du bien immobilier",
+            "Créer les indicateurs géographiques",
+            "Créer les variables enrichies pour l’analyse métier"
+          ]
+        }
+      ]
+    },
+    {
+      "epic": "Modélisation du Data Warehouse",
+      "tasks": [
+        {
+          "task_name": "Création du BI Schema",
+          "subtasks": [
+            "Concevoir le modèle dimensionnel (Star Schema / Snowflake / Galaxy)",
+            "Créer Fact_Annonce",
+            "Créer Dim_Temps",
+            "Créer Dim_Localisation",
+            "Créer Dim_Caractéristiques"
+          ]
+        },
+        {
+          "task_name": "Création du ML Schema",
+          "subtasks": [
+            "Créer la table OBT (One Big Table)",
+            "Consolider toutes les features dans une seule table",
+            "Préparer la structure pour le Machine Learning"
+          ]
+        }
+      ]
+    },
+    {
+      "epic": "Chargement dans le Data Warehouse",
+      "tasks": [
+        {
+          "task_name": "Load vers BI + ML schemas",
+          "subtasks": [
+            "Charger les données propres dans bi_schema",
+            "Charger les données propres dans ml_schema",
+            "Créer les index des colonnes clés",
+            "Optimiser les relations entre les tables"
+          ]
+        }
+      ]
+    },
+    {
+      "epic": "Automatisation du Pipeline",
+      "tasks": [
+        {
+          "task_name": "Pipeline automatisé via Docker Compose",
+          "subtasks": [
+            "Automatiser le flux scraping → staging → clean → warehouse",
+            "Créer un système de retry en cas d’échec",
+            "Mettre en place la réexécution automatique",
+            "Ajouter les logs pour chaque étape"
+          ]
+        }
+      ]
+    },
+    {
+      "epic": "Gestion de la Zone Staging",
+      "tasks": [
+        {
+          "task_name": "Maintenance de la couche staging",
+          "subtasks": [
+            "Nettoyer la zone staging après chargement",
+            "Préparer la réutilisation pour les nouvelles exécutions"
+          ]
+        }
+      ]
+    },
+    {
+      "epic": "Validation, Documentation et Soutenance",
+      "tasks": [
+        {
+          "task_name": "Validation finale",
+          "subtasks": [
+            "Vérifier la cohérence du data warehouse",
+            "Contrôler l’intégrité des relations entre tables",
+            "Valider la complétude des datasets BI et ML"
+          ]
+        },
+        {
+          "task_name": "Documentation et Jira",
+          "subtasks": [
+            "Documenter l’architecture du pipeline",
+            "Préparer le PDF explicatif",
+            "Créer les Epics et Tasks dans Jira",
+            "Mettre à jour l’avancement quotidien"
+          ]
+        },
+        {
+          "task_name": "Préparation de la démonstration",
+          "subtasks": [
+            "Préparer la démo du scraping",
+            "Présenter le nettoyage et les transformations",
+            "Présenter le data warehouse BI + ML",
+            "Justifier les choix techniques"
+          ]
+        }
+      ]
+    }
+  ]
+}
+
+
+# https://charaf-soubi.atlassian.net/jira/software/projects/PDETPLAIAM/list?jql=project%20%3D%20PDETPLAIAM%20ORDER%20BY%20cf%5B10019%5D%20ASC
